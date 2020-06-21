@@ -1,4 +1,6 @@
 var MongoClient = require('mongodb').MongoClient;
+var express = require('express');
+var router = express.Router();
 
 var url = "mongodb://localhost:27017/loginAOS" // nom de la base de donnees
 var dataBaseName = "loginAOS";
@@ -9,14 +11,9 @@ async function isUserRegistered(email) {
     const client = await MongoClient.connect(url);
     const db = client.db(dataBaseName);
     const query = { "email": email };
-    const result = await db.collection(collectionName).find(query).toArray();
+    const isFound = await db.collection(collectionName).findOne(query);
 
-    if (result.length > 0) {
-        return true;
-    }
-    else {
-        return false;
-    }
+    return (isFound ? true : false)
 };
 
 async function emailAndPasswordMatch(email, password) {
@@ -24,15 +21,9 @@ async function emailAndPasswordMatch(email, password) {
     const client = await MongoClient.connect(url);
     const db = client.db(dataBaseName);
     const query = { "email": email };
-    const result = await db.collection(collectionName).find(query).toArray();
+    const userFound = await db.collection(collectionName).findOne(query);
 
-    const userFound = result[0];
-    if (userFound.password == password) {
-        return true;
-    }
-    else {
-        return false;
-    }
+    return (userFound.password == password ? true : false);
 }
 
 async function login(email, password) {
@@ -45,6 +36,21 @@ async function login(email, password) {
 }
 
 
+router.post('/', function (req, res, next) {
+    console.log(req.body);
+    login(req.body.email, req.body.password)
+        .then(response => console.log(response))
+        .then(res.send('<p>Traitement en cours</p>'));
+
+})
+
+
+module.exports = router;
+
+/*
+
+TESTS
+
 (async () => {
     console.log("test 1 " + await isUserRegistered("jean@gmail.com"));
     console.log("test 2 " + await emailAndPasswordMatch("jean@gmail.com", "123soleil"));
@@ -54,4 +60,4 @@ async function login(email, password) {
     console.log("test 6 " + await login("pierre@gmail.com", "toto"));
 })();
 
-
+*/
