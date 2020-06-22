@@ -1,5 +1,9 @@
 {
     "scripts": {
         "test": "jest"
+    },
+    "dependencies": {
+        "expect": "^26.0.1",
+        "puppeteer": "^4.0.0"
     }
 }
