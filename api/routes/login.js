@@ -2,7 +2,7 @@ var MongoClient = require('mongodb').MongoClient;
 var express = require('express');
 var router = express.Router();
 
-var url = "mongodb://localhost:27017/loginAOS" // nom de la base de donnees
+var url = "mongodb://localhost:27017/loginAOS" // nom de la base de donnees et port par defaut
 var dataBaseName = "loginAOS";
 var collectionName = "utilisateurs";
 
