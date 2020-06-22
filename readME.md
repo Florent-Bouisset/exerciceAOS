@@ -1,20 +1,20 @@
-Etape 1 - Creer la base de données:
+Etape 1 - Creer la base de données:  
 executer mongo.exe en mode console et saisir les commandes:
->use loginAOS
+>use loginAOS  
 >db.utilisateurs.insertMany([{ email:"antoine@gmail.com", password:"123soleil" },{email :"jules@gmail.com", password:"asterix"}])
 
-Etape 2 - Lancer le serveur
+Etape 2 - Lancer le serveur  
 saisir les commandes:
-> cd api
+> cd api  
 > npm start
 
-Etape 3 - Lancer le client
+Etape 3 - Lancer le client  
 saisir les commandes:
-> cd client
-> npm start
-Si le navigateur ne se lance pas automatiquement, se connecter à l'url http://localhost:3000/
+> cd client  
+> npm start  
+Si le navigateur ne se lance pas automatiquement, se connecter à l'url http://localhost:3000/  
 
-Etape 4 - Effectuer les tests
+Etape 4 - Effectuer les tests  
 saisir les commandes:
->cd test
+>cd test  
 >npm run test
