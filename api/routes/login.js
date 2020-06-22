@@ -39,9 +39,14 @@ async function login(email, password) {
 router.post('/', function (req, res, next) {
     console.log(req.body);
     login(req.body.email, req.body.password)
-        .then(response => console.log(response))
-        .then(res.send('<p>Traitement en cours</p>'));
-
+        .then((credentialsMatches) => {
+            if (credentialsMatches) {
+                res.send({ divID: 'mainContent', text: '<h2>Connexion réussie</h2>' });
+            }
+            else {
+                res.send({ divID: 'errorMessage', text: '<p>Identifiants incorrects</p>' });
+            }
+        })
 })
 
 
