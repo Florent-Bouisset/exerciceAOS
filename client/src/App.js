@@ -4,6 +4,19 @@ import ReactDOM from 'react-dom';
 
 import './App.css';
 
+function formToJson(form) {
+  const data = new FormData(form);
+
+  var object = {};
+  data.forEach(function (value, key) {
+    object[key] = value;
+  });
+
+  var json = JSON.stringify(object);
+
+  return json;
+}
+
 
 function createElementFromHTML(myHtmlString) {
   return (
@@ -12,11 +25,6 @@ function createElementFromHTML(myHtmlString) {
 }
 
 class App extends Component {
-
-  constructor(props) {
-    super(props); {
-    }
-  }
 
   callAPI(jsonData) {
     fetch('http://localhost:9000/login', {
@@ -38,25 +46,10 @@ class App extends Component {
 
   }
 
-
-
-  formToJson(form) {
-    const data = new FormData(form);
-
-    var object = {};
-    data.forEach(function (value, key) {
-      object[key] = value;
-    });
-
-    var json = JSON.stringify(object);
-
-    return json;
-  }
-
   submitHandler = (event) => {
     event.preventDefault();
     const form = document.getElementById('form01');
-    const json = this.formToJson(form);
+    const json = formToJson(form);
     this.callAPI(json);
 
   }
