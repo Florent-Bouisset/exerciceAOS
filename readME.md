@@ -14,3 +14,7 @@ saisir les commandes:
 > cd client
 > npm start
 Si le navigateur ne se lance pas automatiquement, se connecter à l'url http://localhost:3000/
+
+Etape 4 - Effectuer les tests
+saisir la commande:
+>npm run test

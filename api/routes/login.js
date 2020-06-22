@@ -41,10 +41,10 @@ router.post('/', function (req, res, next) {
     login(req.body.email, req.body.password)
         .then((credentialsMatches) => {
             if (credentialsMatches) {
-                res.send({ divID: 'mainContent', text: '<h2>Connexion réussie</h2>' });
+                res.send({ divID: 'mainContent', text: '<h2 id="loginStatus">Connexion réussie</h2>' });
             }
             else {
-                res.send({ divID: 'errorMessage', text: '<p>Identifiants incorrects</p>' });
+                res.send({ divID: 'errorMessage', text: '<p id="loginStatus">Identifiants incorrects</p>' });
             }
         })
 })
